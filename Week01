@@ -1,0 +1,97 @@
+XML Lecture 01 Aug 21 2017
+public directory
+/pub/cs/amoghtan/cs142
+
+There are Two types of files in computer world
+1.)Binary File
+ -> compose of bit
+ -> make for specific type of software
+ -> output file of complier
+ -> not readable, not for human
+ ie1 tar file -> arheive files -> binary file
+    analysize or used by software of "tar"
+ ie1 java create bype code files -> we call immediate files -> not good example of binanry files
+
+ Two ways to make distinsion to see what type of binary files
+ 1.) by extentsion ie. .exe .zip
+ 2.) by "magic number" 
+     file header (256 bytes 0-255) most can be ignore except "MAGIC NUMBER" -> we call it "file ID" -> located norally first two words of any binary file-> file will be collasp if the first two words was changed -> what hacker do
+
+     magic number was invented by the software developer -> should be unique
+     can chekc on "ANSI", magic(5)-> man -5 magic to see all the magic rules
+
+     "tar -cuf abcd.tar ." -> arheive all files
+     "gzip abcd.tar" -> compress the archeive
+
+      combine these two steps
+      "tar -zcup abcd.tar" search for those tar header to zip
+      know it was zipped for zip header
+
+
+ 2.)Text File -> human & machine readable
+              -> interview question
+              Text files -> This is ok 11 bytes
+              binary files has small size than text file
+              advantage of text files -> human readable -> xml is text file
+              need to add -> "meta data" -> data that make that line more meaningful
+              <b> This is ok </b>
+              xml is using text + meta data
+              Hyper Text Markup Language -> Hyper -> moving the point of cursor, action happened
+              
+****Difference between html and xml***
+1.)html -> does not care upper/ lower case
+ie html is accepted by html but not xml
+<person>
+    <user name=John age=25/>
+    <user name=Alex age=25/>
+</person>
+
+
+acepted by xml, 2.)all key word (attributes) within " "
+<person>
+    <user name="John" age="25"/>
+    <user name="Alex" age="25"/>
+</person>
+
+3.) each tag element in html have a meaning <H3> Hello </H3> H3 has meaning -> html will give big font
+In boswer default, put html put to broswer-> show website; put xml ->put to broswer colorised mode
+all of modern broswer are responsive to html and xml. 
+
+XML
+1.)writing element in lower case
+HTML
+1.)writing element in upper case
+
+HTML + XML = XHTML(not popular, short life cycle, not work properly)
+
+XML Style Sheet -> instruction give to broswer that how to handle XML
+                -> written in XML
+chrome://global/content/xml/XMLPrettyPaint.xsl -> able to modify it
+
+XML=Extensible Markup Language -> not good name
+XML would be used in both server side and client side
+Java has XML in server side -> configuration file -> in text format
+some config file has no standard
+
+***CONFIGURATION FILES***
+""" not standardize format configuration file
+os=Unix
+size-15M
+//This is just a wrong Number 
+"""
+
+ant(another need tool) written by XML-> replaced by gradle compling android application Gradle is wriiten by Groovy (simple java), androids use "XML" configuration files
+
+P(System.getPropertiy("ios.name")) -> name of property
+java 9 release -> jshell -> REPL -> revolved print loop -> cannot handle graphic 
+maven written by XML
+
+Procedue to create XML files
+1.) Validate XML files
+2.) Extract data from XML
+    JAVA had both API for extract data in XML
+	a.) DOM -> put entire XML in memory -> good: simple -> bad: too much memory
+	b.) SAX -> put individual part in XML -> good: less memory
+
+Chapter 1 -> covered all coover tognight
+Next week -> Chapter 2  -> how to validate XML

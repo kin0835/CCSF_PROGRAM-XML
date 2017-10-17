@@ -1,0 +1,21 @@
+Schemas
+
+Schemas location
+<people schemaLocation="https://www.hills.ccsf.edu/my.xsd">
+
+the xsd file would affect the whole file
+  <name>John</name>
+    <age schemaLocation=...>18<age>
+</people>
+
+How to use external schemas
+1.) using css
+2.) transform XML ti XSL (Extended StyleSheet Language)
+3.) transfer XML to HTML
+XML -> XSLT -> XSL ->HTML
+
+INPUT - XML -> XSLT Processor -> output - XSL 
+Abbas like XSLT Processor name -> Saxon.sourceforge.net
+
+<H3> hello </H3> HTML -> header
+<H3> hello </H3> XML -> nothing 

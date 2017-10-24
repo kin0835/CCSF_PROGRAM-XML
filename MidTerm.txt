@@ -1,0 +1,20 @@
+prolog
+
+
+<schema version='5'>
+<element name ="note">
+  <complexType>
+    <sequence>
+      <element name="to" type="string"/>
+      <element name="from" type="string"/>
+      <element name="heading" type="string"/>
+      <element name="body" type="string"/>
+    </sequence>
+  </complexType>
+</element>
+</schema>
+
+melissa.feuer@gmail.com
+<note to="Tove" from="Jani" heading="Reminder"
+      body="Dont forget me this weekend!"
+</note>      

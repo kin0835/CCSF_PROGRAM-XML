@@ -1,0 +1,140 @@
+DOM -> Node -> heart of DOM
+The DOM defines a standard for accessing and manipulating documents:
+
+"The W3C Document Object Model (DOM) is a platform and language-neutral interface that 
+allows programs and scripts to dynamically access and update the content, structure, and style of a document."
+
+
+Node-> DocumentFragment
+    -> Documents
+    -> CharacterData  -> which is a subclass of interface text -> subclass of CDATASection
+                      -> Comment    
+    -> Attribute 
+    -> Element
+    -> DocumentType
+    -> Notation
+    -> Entity
+    -> EntityReference
+    -> ProcessingInstruction
+    
+NodeList
+NamedNodeMap
+
+Node Characteristics = type, name, value
+contextual location -> parents
+                    -> siblings
+                    -> children
+
+ELEMENT_NODE = 1
+ATTRIBUTE_NODE = 2
+TEXT_NODE = 3
+CDDATA_SECTION_NODE = 4
+ENTITY_REFERENCE_NODE = 5
+ENTITY_NODE = 6
+PROCESSING_INSTRUCTION_NODE = 7
+COMMENT_NODE = 8
+DOCUMENT_NOMD = 9
+DOCUMENT_TYPE = 10
+
+if(myNode.getNodeType()==Node.ELEMENT_NODE)
+{}
+if(myNode.getNodeName().equals("para") && myNode.getType()==Node.ELEMENT_NODE)
+{}
+
+short getNodeType()
+String getNodeName()
+String getNodeValue() throws DomeException
+
+try{
+  String x = myNode.getNodeValue();
+  }catch(DomException e){}
+  
+void setNodeValue(String value)
+throws DOMException
+boolean hasChildNodes()
+
+getAttributes()
+<person name="Jack" age="23" salary="40000">
+
+Node Navigation
+Node getFirstChild()
+Node getLastChild()
+Node getNextSibling()
+Node getPreviousSibling()
+Node getParentNode()
+NodeList getChildNodes()
+if(myNode.hasChildNodes())
+{
+  Node firstChild = myNode.getFirstChild();
+  Node secondChild = firstChild.getNextSibling();
+}
+
+  
+  DocumentType getDocType();
+  DOMImplementation getImplementation()
+  Element getDocumentElement()
+  NodeLists getElementByTagName(String tagName)
+  ELEMENT createElement(String tagName)
+  
+//1. Creating document  
+  DocumentBuilderFactory dbf = DocumnetBuilderFactory.newInstance().newDocumentBuilder();
+  Document doc = parse(x); -> {File f URL u InputStream is
+  mkDocument(File f);
+  
+  a.xml
+  <?XML version="1.0" ?>
+  <person>
+    <name>John</name>
+    <age>32<age>
+  </person>    
+  
+if(fileOK("a.xml"))
+{
+  Document doc = mkDocument(new File("a.xml"));
+}
+
+//2. getinfo
+getChildren() -> 5
+  <person>
+    1<> empty child -> is not element
+    2<name>John</name>
+    3<> empty child
+    4<age>32<age>
+    5<> empty child
+  </person>    
+Exam question show three different way to show empty child
+NodeList children = root.getChildren();
+//loop five times
+for(int i = 0; i< children.getLength(); i++)
+{
+  Node child = children.item(i);
+}
+//approach to skip child element
+1.) if(!child instanceof ELEMENT)
+2.) if(child.getNodeType() != Node.ELEMENT_NODE)
+3.)
+
+<?xml version="1.0"?>
+<class>
+  <student rollno="393">
+  <firstname>John</firstname>
+  <lastname>Simit</lastname>
+  <nickname>js</nickname>
+  </student>
+  2 morer students
+ </class>
+ 
+ import java.io.*;
+ import java.xml.parser.*;
+ import java.w3c.dom.*;
+ 
+ public class DOMDemo{
+  public static void main(String args[])
+  {
+    try{
+      File f = new File("a.xml");
+      Document doc = DocumentBuilderFactory.newInstance().
+    }
+  }
+ }
+  

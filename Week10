@@ -1,0 +1,178 @@
+//os = Linux
+//port = 76
+#Comment Line
+
+
+public Demo{
+	public static void main(String args[]){
+		//Program to put key and value to XML
+		Properties p = new Properties();
+		p.put("os","Linux");
+		p.put("port","76");
+		try{
+			FileOutputStream fos = new FileOutputStream("properties.xml");
+			p.storeToXML(fos,"properties example");
+
+		//Program to read the xml file
+			FileInput fis = new FileInputStream("propertis.xml");
+			/*
+			while(fis.avalable() > 0){
+				print("" + (char)fis.read());
+			}
+			*/
+			//use below two lines instead of while block
+			p.loadFromXML(fis);
+			p.list(System.out);
+		}catch (IOException e){e.printStackTrace();}
+
+	}
+
+	public void storeToXML (FileOutputStream fos, String comment, String conCode){
+
+	}
+
+	//XML
+	<?xml version-"1.0" encoding="UTF-8" standalone="no" ?>
+	/* standalone is point the DTD file */
+	<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/propertis.dtd">
+	<propertis>
+		<comment> properties example </comment>
+		<entry Key = "os"> Linux </entry>
+		<entry Key="port">76</entry>
+	</propertis>
+}
+
+DOM XML
+<?xml version="1.0" ?>
+	<company>
+		<staff id="1001">
+			<firstname>John</firstname>
+			<lastname>Smith</lastname>
+			<nickname>JS</lastname>
+			<salary>60000</salary>
+		</staff>
+		<staff id="2001">
+		xxx
+		</staff>
+	</company>			
+
+//simple DOM application to read Dom
+import javax.xml.parser.*;
+import org.w3c.dom.*;
+import java.io.*;
+
+public class ReadXMLFile{
+	//public static void main(String args[]){
+	try{
+		Document doc = mkDocument("/usr/local/staff.xml");
+		//eleminate to remove write space
+		doc.getDocumentElement().normalize();
+		println("Root element: " + doc.getDocumentElement()).getNodeName());
+		NodeList nl = doc.getElementByTagName("staff");
+		println("...");
+		for(int temp = 0; temp < nl.getLength(); temp++){
+			Node nd = nl.item(temp);
+			println("current element: " + nd.getNodeName());
+			if(nd.getNodeType() == Node.ELEMENT_NODE){
+				Element el = (Element)nd;
+				//get Staff value
+				println("Staff id: " + el.getAttribute("id"));
+				//get first name
+				println("First Name: " + el.getElementByTagName("firstname").item(0).getTextContent());
+				//get last name
+				println("Last Name: " + el.getElementByTagName("lastname").item(0).getTextContent());
+				println("Salary: " + el.getElementByTagName("salary").item(0).getTextContent());
+
+			}
+		}
+	}catch (Except e){e.printStackTrace();}
+	}
+
+
+	public static Document mkDocument(String fname) throws Exception{
+		File f = new File(fname);
+		DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+		DocumentBuilder db = dbf.newDocumentBuilder();
+		return(db.parse(f));
+	}
+
+	//another method
+		try{
+			Document doc = mkDocument("/usr/local/staff.xml");
+			//eleminate to remove write space
+			doc.getDocumentElement().normalize();
+			println("Root element: " + doc.getDocumentElement()).getNodeName());
+			if(doc.hasChildNodes()){
+				printNote(doc.getChildNodes());
+			}
+		}catch (Exception e){println(e.getMessage())}
+		
+		public static void printNode(NodeList nl){
+			for(int i = 0; count < nl.getLength; count++){
+				Node tempNode = nl.item(count);
+				if(tempNode.getNodeType(0==Node.ELEMENT_NODE)){
+					println("Node Name = " + tempNode.getNodeName());
+					println("Node Value = " + tempNode.getTextContent());
+					if(tempNode.hasAttribute()){
+						NamedNodeMap nodeMap = tempNode.getAttributes();
+						for(int i = 0; i < nodeMap.getLength(); i++){
+							Node node = nodeMap.item(i);
+							println("attr name: " + node.getNodeName());
+							printkn("attr value: " + node.getNodeValue());
+						}
+						if(tempNode.hasChildNodes()){
+							printNode(tempNode.getChildNodes());
+						}
+						println("Node name = " + tempNode.getNodeName());
+					}
+
+
+				}
+			}
+		}
+
+		//another method to make dom
+		public class parseUnknownXMLStructure{
+			public static void main (String args[]) throws ParseConfigureException, SAXException, IOException{
+				Document doc - mkDocument("/usr/local/staff.xml");
+				doc.getDocumentElement().normalized();
+				Element root = doc.getDocumentElement();
+				NodeList nList = doc.getElementByTagName("staff");
+				println("...");
+				visitChildNodes(nList);
+
+
+			}
+			public static void visitChildNodes(Node nList){
+				for(int temp = 0; temp < nList.getLength(); temp++){
+					Node node = nList.item(temp);
+					if(node.getNodeType() == Node.ELEMENT_NODE){
+						println("Node name" + node,getNodeName() + ": value =" + node.getTextContent());
+						if(node.hasAttributes()){
+							NamedNodeMap nodeMap = nade.getAttributes();
+							for(int i = 0; i < nodeMap.getLength(); i++){
+								Node tempNode = nodeMap.item(i);
+								println("Attrname =" + tempNode.getNodeName()+"value =" + tempNode.getNodeValue());
+							}
+							if(nodes.hasChildNodes()){
+								visitChildNodes(node.getChildNodes());
+							}
+						}
+					}
+				}
+			}
+		}
+
+		//how to validation of XML
+		Schemas s = null;
+		try{
+			String language = XMLConstants.W3C_XML_SCHEMA_NS_URI;
+			SchemaFactroy factory = SchemaFactory.newInstantce();
+			s = factory.newSchema(new File(fname))
+		}catch (Exception e){e.printStackTrace();}
+		validator v = s.newValidator().v.validator(new DOMSoruce(doc));
+}
+
+
+}
+
